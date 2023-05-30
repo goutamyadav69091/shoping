@@ -32,7 +32,7 @@ ActiveAdmin.register User do
    filter :name
    filter :email
 
-   # controller { actions :all, except: [:destroy] }
+   controller { actions :all, except: [:destroy] }
 
 end
 
