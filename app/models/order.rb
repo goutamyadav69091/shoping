@@ -9,6 +9,7 @@ class Order < ApplicationRecord
     shipped: 1,
     delivered: 2,
     canceled: 3
+
   }
 
 end
