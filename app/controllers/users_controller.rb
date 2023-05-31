@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	protect_from_forgery with: :null_session
 	before_action :authorize_request, except: :create
 	before_action :find_user ,only: [:show, :update, :destroy]
 

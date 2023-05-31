@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+	protect_from_forgery with: :null_session
 	before_action :authorize_request, except: [:index, :show]
 	before_action :is_admin, only: [:update, :destroy]
 	
@@ -9,11 +10,11 @@ class OrdersController < ApplicationController
 
 	def create
 		byebug
-		order = @current_user.orders.new(order_params)
-		if order.save
-			render json:order
+		@order = @current_user.orders.new(order_params)
+		if @order.save
+			render json:{order: @order, payment: @order.payment }
 		else
-			render json:order.errors.full_messages
+			render json:@order.errors.full_messages
 		end
 	end
 	
@@ -45,7 +46,7 @@ class OrdersController < ApplicationController
 	private 
 
 	def order_params
-		params.require(:order).permit(:cart_id,:shiping_address,:billing_address,:payment_mode)
+		params.require(:data).permit(:cart_id,:shiping_address,:billing_address,:amount,:credit_card_number,:credit_card_exp_month,:credit_card_exp_year,:credit_card_cvv)
 	end
 
 	def is_admin
