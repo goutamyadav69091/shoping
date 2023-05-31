@@ -10,6 +10,11 @@ class OrdersController < ApplicationController
 
 	def create
 		byebug
+		if @current_user.stripe_id.nil?
+			customer = Stripe::Customer.create(:email=>@current_user.email,:name=>@current_user.name)
+     	# @current_user.stripe_id = customer.id
+      User.find(@current_user.id).update(:stripe_id=>customer.id)
+    end
 		@order = @current_user.orders.new(order_params)
 		if @order.save
 			render json:{order: @order, payment: @order.payment }
