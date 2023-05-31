@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_122415) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_110103) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -52,12 +52,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_122415) do
     t.integer "user_id", null: false
     t.string "shiping_address"
     t.string "billing_address"
-    t.string "payment_mode"
+    t.integer "payment_mode", default: 0
     t.integer "order_status", default: 0
+    t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.string "stripe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -79,11 +88,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_122415) do
     t.boolean "is_admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_id"
   end
 
   add_foreign_key "carts", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "orders", "carts"
   add_foreign_key "orders", "users"
+  add_foreign_key "payments", "orders"
   add_foreign_key "products", "users"
 end

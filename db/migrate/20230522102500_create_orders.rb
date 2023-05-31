@@ -5,8 +5,9 @@ class CreateOrders < ActiveRecord::Migration[7.0]
 			t.references :user, null: false, foreign_key: true
 			t.string :shiping_address
 			t.string :billing_address
-			t.string :payment_mode
+			t.integer :payment_mode, default: 0
 			t.integer :order_status, default: 0
+			t.integer :amount 
 
 			t.timestamps
 		end
