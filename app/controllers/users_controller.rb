@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 		begin
 		@user = User.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-    	render json:  "#No such record in User for id :: #{params[:id]} on #{action_name}" and return
+		render json:  "#No such record in User for id :: #{params[:id]} on #{action_name}" and return
 		end
 	end
 

@@ -11,10 +11,10 @@ class Payment < ApplicationRecord
 				  :description => 'Rails Stripe transaction',
 				  :currency => 'usd',
 				  :payment_method_data => {
-				  	 	type: 'card',
-				  	 	card: {
-				  	 		token: token
-				  	 	}
+						type: 'card',
+						card: {
+							token: token
+						}
 				  }
 				)
 		self.stripe_id = response.id
