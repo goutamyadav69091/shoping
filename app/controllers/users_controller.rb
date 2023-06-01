@@ -16,9 +16,6 @@ class UsersController < ApplicationController
 		render json: @user
 	end
 
-	def edit
-	end
-
 	def create
 		user = User.new(user_params)
 		if user.save 
@@ -51,7 +48,7 @@ class UsersController < ApplicationController
 		begin
 		@user = User.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-		render json:  "#No such record in User for id :: #{params[:id]} on #{action_name}" and return
+		render json:  "#No such record in User for id ::  #{params[:id]} on #{action_name}" and return
 		end
 	end
 

@@ -12,11 +12,7 @@ class Order < ApplicationRecord
 		canceled: 3
 	}
 
-	enum payment_mode: {
-		credit_card: 0,
-		cash: 1,
-		online: 2,
-	}
+	enum payment_mode: [:card,:cash,:online]
 
 	def create_payment
 		params = {
