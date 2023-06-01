@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
 	def update
 		if user.update(user_params)
-			render json: user ,status: 201
+			render json: user
 		else
 			render json: {:error => user.errors.full_messages }
 		end
