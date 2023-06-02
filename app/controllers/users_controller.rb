@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 	before_action :find_user ,only: [:show, :update, :destroy]
 
 	def index
-		users = User.all
+		# users = User.all
+		users = User.page params[:page]
 		if users 
 			render json: users
 		else 
@@ -16,13 +17,13 @@ class UsersController < ApplicationController
 		render json: @user
 	end
 
-	def create
-		user = User.new(user_params)
-		if user.save 
-			render json: user
-		else
-			render json: {:error => user.errors.full_messages }
-		end
+	def create	
+		# user = User.new(user_params)
+		# if user.save 
+		# 	render json: user
+		# else
+		# 	render json: {:error => user.errors.full_messages }
+		# end
 	end
 
 	def update

@@ -282,6 +282,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jwt
+  kaminari
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   sassc (~> 2.1.0)

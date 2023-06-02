@@ -83,3 +83,4 @@ gem 'activeadmin'
 gem "devise", "~> 4.9"
 gem 'sassc', '~> 2.1.0'
 gem 'stripe'
+gem 'kaminari'
