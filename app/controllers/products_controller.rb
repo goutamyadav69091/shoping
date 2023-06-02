@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 	before_action :find_product, only: [:show, :update, :destroy]
 
 	def index
-		products = Product.all
+		products = Product.page params[:page]
     render json: products
 	end
 
@@ -53,9 +53,7 @@ class ProductsController < ApplicationController
 	end
 
 	def is_admin
-		if @current_user.is_admin
-
-		else
+		if !(@current_user.is_admin)
 			render json: 'you are not allowed to perform that action'
 		end
 	end

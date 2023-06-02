@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	# has_secure_password
+	paginates_per 3
 	has_many :products
 	has_many :carts
 	has_many :orders 
