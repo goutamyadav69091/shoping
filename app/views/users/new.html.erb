@@ -1,0 +1,41 @@
+
+<div class="container">
+<h1 class="text text-center">Sign up form</h1>
+	
+<%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :contact %><br>
+    <%= form.number_field :contact %>
+  </div>
+
+  <div>
+    <%= form.label :password %><br>
+    <%= form.text_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :is_admin %><br>
+    <%= form.check_box :is_admin %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+</div>

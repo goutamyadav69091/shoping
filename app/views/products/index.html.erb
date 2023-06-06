@@ -1,0 +1,26 @@
+
+<div class="container">
+<h1> List of all products available</h1>
+	<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>S.No</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @products.each_with_index do |product,index| %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td><%= product.name.upcase%></td>
+					<td><%= product.price%></td>
+					<td ><a class="btn btn-danger text text-light" style="text-decoration: none;" href="products/<%=product.id%>">view</a> </td>
+				</tr>
+	      <% end %>		
+			</tbody>
+		</table>
+	</div>
+</div>

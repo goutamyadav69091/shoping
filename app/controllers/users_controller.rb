@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	protect_from_forgery with: :null_session
-	before_action :authorize_request, except: :create
+	before_action :authorize_request, except: [:create, :new]
 	before_action :find_user ,only: [:show, :update, :destroy]
 
 	def index
@@ -13,17 +13,28 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def new
+		@user = User.new
+	end
+
 	def show
 		render json: @user
 	end
 
+	def profile
+		@user = User.find(@current_user.id)
+	end
+
 	def create
-		# user = User.new(user_params)
-		# if user.save 
-		# 	render json: user
-		# else
-		# 	render json: {:error => user.errors.full_messages }
-		# end
+		byebug
+		user = User.new(user_params)
+		if user.save 
+			redirect_to "/login"
+			# redirect_to login_path
+			# render :login
+		else
+			render json: {:error => user.errors.full_messages }
+		end
 	end
 
 	def update
