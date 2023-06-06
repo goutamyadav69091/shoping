@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "users#create"
-  # get 'users/create', to: "users#create"
-  post 'users/login' , to: 'authentication#login'
+  root "users#new"
+  get '/profile', to: 'users#profile'
+  get '/login', to: 'authentication#new'
+  post '/auth/login' , to: 'authentication#login'
   get '/products/current_user', to: 'products#current_user_products'
   get 'orders/current_user', to: 'orders#current_user_orders'
   # resources :users

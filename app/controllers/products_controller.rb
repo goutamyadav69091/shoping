@@ -4,12 +4,10 @@ class ProductsController < ApplicationController
 	before_action :find_product, only: [:show, :update, :destroy]
 
 	def index
-		products = Product.page params[:page]
-    render json: products
+		@products = Product.page params[:page]
 	end
 
 	def show 
-		render json: @product
 	end
 
 	def create 
@@ -33,8 +31,8 @@ class ProductsController < ApplicationController
 
 	def destroy 
 		@product.destroy
-
-		render json: {:message => 'product deleted',:data => product}
+		redirect_to products_path
+		# render json: {:message => 'product deleted',:data => product}
 	end
 
 	def current_user_products 		
