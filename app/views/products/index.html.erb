@@ -12,14 +12,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @products.each_with_index do |product,index| %>
-				<tr>
-					<td><%= index + 1 %></td>
-					<td><%= product.name.upcase%></td>
-					<td><%= product.price%></td>
-					<td ><a class="btn btn-danger text text-light" style="text-decoration: none;" href="products/<%=product.id%>">view</a> </td>
-				</tr>
-	      <% end %>		
+					<form action="/carts" method="post">
+						<% @products.each_with_index do |product,index| %>
+						<tr>
+
+								<input type="hidden" name="product_id" value="<%=product.id%>"/>
+								<input type="hidden" name="product_qty" value="1">
+								<td><%= index + 1 %></td>
+								<td><%= product.name.upcase%></td>
+								<td><%= product.price%></td>
+								<td >
+									<a class="btn btn-danger text text-light" style="text-decoration: none;" href="products/<%=product.id%>">view</a>
+									<input type="submit" value="Add To Cart"/>
+								</td>
+
+						</tr>
+			      <% end %>		
+					</form>
 			</tbody>
 		</table>
 	</div>

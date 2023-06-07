@@ -2,20 +2,25 @@ class CartsController < ApplicationController
 	before_action :authorize_request
 
 	def index 
-		cart = @current_user.carts
+		@carts = @current_user.carts
 		# cart = Cart.joins(:product, :user).where(user: {:id => @current_user.id}).select('products.* , carts.*')
-		if cart 
-			render json: cart
+		if @carts 
+			# render json: cart
+			render :index
 		else
 			render json: "cart not found"
 		end
+	end
+
+	def new
+		@cart = Cart.new
 	end
 
 	def create
 		byebug
 		cart = @current_user.carts.new(cart_params)
 		if cart.save
-			render json: cart
+			redirect_to root_path
 		else
 			render json: cart.errors.full_messages
 		end
@@ -39,7 +44,7 @@ class CartsController < ApplicationController
 	private
 
 	def cart_params
-		params.require(:cart).permit(:product_id, :product_qty)
+		params.permit(:product_id, :product_qty)
 	end
 
 end
