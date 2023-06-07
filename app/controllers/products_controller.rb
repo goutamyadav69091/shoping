@@ -52,7 +52,9 @@ class ProductsController < ApplicationController
 
 	def is_admin
 		if !(@current_user.is_admin)
-			render json: 'you are not allowed to perform that action'
+			# render json: 'you are not allowed to perform that action'
+			flash[:alert] = "you are not allowed to perform that action"
+			redirect_to product_path
 		end
 	end
 

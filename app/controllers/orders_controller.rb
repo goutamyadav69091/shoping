@@ -5,7 +5,12 @@ class OrdersController < ApplicationController
 	
 	def index
 		@order = Order.all
-		render json: @order
+		# render json: @order
+		render :index
+	end
+
+	def new
+		@order = Order.new
 	end
 
 	def create
